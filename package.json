@@ -3,6 +3,10 @@
     "displayName": "environment-injector",
     "description": "Allows injection of env variables into your session, as well as sourcing of .env files.",
     "publisher": "GoNZooo",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/GoNZooo/vscode-environment-injector"
+    },
     "version": "0.0.1",
     "engines": {
         "vscode": "^1.29.0"
