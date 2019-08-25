@@ -4,6 +4,21 @@
 import * as vscode from 'vscode';
 import { set, readEnvFile, getCurrentEnv } from './env';
 
+var outputConsole: vscode.OutputChannel;
+
+function logresults(msg: string) {
+  if (outputConsole === undefined) {
+    outputConsole = vscode.window.createOutputChannel("Environment Vars");
+  }
+  outputConsole.appendLine("");  
+    
+  var msgd = JSON.parse(msg);
+  for(var name in msgd) {
+    outputConsole.appendLine(name + "=" + msgd[name]);
+  } 
+  outputConsole.show(true);
+}
+
 export function activate(context: vscode.ExtensionContext) {
   // The command has been defined in the package.json file
   // Now provide the implementation of the command with  registerCommand
@@ -54,9 +69,7 @@ export function activate(context: vscode.ExtensionContext) {
   let getCurrentEnvCommand = vscode.commands.registerCommand(
     'extension.environment-injector.getCurrentEnv',
     async () => {
-      vscode.window.showInformationMessage(
-        JSON.stringify(getCurrentEnv(), null, 2)
-      );
+		   logresults(JSON.stringify(getCurrentEnv(), null, 2));
     }
   );
 
