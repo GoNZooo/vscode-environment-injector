@@ -69,7 +69,7 @@ export function activate(context: vscode.ExtensionContext) {
   let getCurrentEnvCommand = vscode.commands.registerCommand(
     'extension.environment-injector.getCurrentEnv',
     async () => {
-		   logresults(JSON.stringify(getCurrentEnv(), null, 2));
+      logresults(JSON.stringify(getCurrentEnv(), null, 2));
     }
   );
 
