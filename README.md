@@ -26,3 +26,7 @@ notification and paste it somewhere to see a non-truncated version.
 ### 0.0.1
 
 First release, experimental.
+
+### 0.0.2
+
+Upgraded some dev deps; `tslint`/`eslint` had some security issues.
