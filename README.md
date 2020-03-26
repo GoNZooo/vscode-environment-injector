@@ -30,3 +30,7 @@ First release, experimental.
 ### 0.0.2
 
 Upgraded some dev deps; `tslint`/`eslint` had some security issues.
+
+### 0.0.3
+
+I somehow broke everything. Now runs fine again.

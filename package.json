@@ -1,4 +1,5 @@
 {
+  "license": "MIT",
   "name": "environment-injector",
   "displayName": "environment-injector",
   "description": "Allows injection of env variables into your session, as well as sourcing of .env files.",
@@ -7,9 +8,9 @@
     "type": "git",
     "url": "https://github.com/GoNZooo/vscode-environment-injector"
   },
-  "version": "0.0.2",
+  "version": "0.0.3",
   "engines": {
-    "vscode": "^1.29.0"
+    "vscode": "^1.43.0"
   },
   "categories": [
     "Other"
@@ -44,14 +45,16 @@
   "scripts": {
     "vscode:prepublish": "yarn run compile",
     "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./"
+    "watch": "tsc -watch -p ./",
+    "lint": "tslint -p ."
   },
   "devDependencies": {
-    "@types/node": "^12.12.31",
-    "@types/vscode": "^1.29.0",
-    "vscode-test": "^1.3.0",
+    "@types/mocha": "^7.0.1",
+    "@types/node": "^12.11.7",
+    "@types/vscode": "^1.43.0",
     "tslint": "^6.1.0",
-    "typescript": "^3.8.3"
+    "typescript": "^3.7.5",
+    "vscode-test": "^1.3.0"
   },
   "dependencies": {
     "dotenv": "^6.2.0"
