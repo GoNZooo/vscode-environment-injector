@@ -22,7 +22,8 @@
     ],
     "main": "./out/extension",
     "contributes": {
-        "commands": [{
+        "commands": [
+            {
                 "command": "extension.environment-injector.injectVar",
                 "title": "Inject environment variable"
             },
