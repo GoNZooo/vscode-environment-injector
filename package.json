@@ -1,61 +1,59 @@
 {
-    "name": "environment-injector",
-    "displayName": "environment-injector",
-    "description": "Allows injection of env variables into your session, as well as sourcing of .env files.",
-    "publisher": "GoNZooo",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/GoNZooo/vscode-environment-injector"
-    },
-    "version": "0.0.1",
-    "engines": {
-        "vscode": "^1.29.0"
-    },
-    "categories": [
-        "Other"
-    ],
-    "activationEvents": [
-        "onCommand:extension.environment-injector.injectVar",
-        "onCommand:extension.environment-injector.readEnvFile",
-        "onCommand:extension.environment-injector.sourceEnvFile",
-        "onCommand:extension.environment-injector.getCurrentEnv"
-    ],
-    "main": "./out/extension",
-    "contributes": {
-        "commands": [
-            {
-                "command": "extension.environment-injector.injectVar",
-                "title": "Inject environment variable"
-            },
-            {
-                "command": "extension.environment-injector.getCurrentEnv",
-                "title": "Get your current environment"
-            },
-            {
-                "command": "extension.environment-injector.sourceEnvFile",
-                "title": "Source env file"
-            },
-            {
-                "command": "extension.environment-injector.readEnvFile",
-                "title": "Read env file"
-            }
-        ]
-    },
-    "scripts": {
-        "vscode:prepublish": "yarn run compile",
-        "compile": "tsc -p ./",
-        "watch": "tsc -watch -p ./",
-        "postinstall": "node ./node_modules/vscode/bin/install",
-        "test": "yarn run compile && node ./node_modules/vscode/bin/test"
-    },
-    "devDependencies": {
-        "@types/mocha": "^2.2.42",
-        "@types/node": "^8.10.25",
-        "tslint": "^5.8.0",
-        "typescript": "^3.1.4",
-        "vscode": "^1.1.25"
-    },
-    "dependencies": {
-        "dotenv": "^6.2.0"
-    }
+  "name": "environment-injector",
+  "displayName": "environment-injector",
+  "description": "Allows injection of env variables into your session, as well as sourcing of .env files.",
+  "publisher": "GoNZooo",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GoNZooo/vscode-environment-injector"
+  },
+  "version": "0.0.2",
+  "engines": {
+    "vscode": "^1.29.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:extension.environment-injector.injectVar",
+    "onCommand:extension.environment-injector.readEnvFile",
+    "onCommand:extension.environment-injector.sourceEnvFile",
+    "onCommand:extension.environment-injector.getCurrentEnv"
+  ],
+  "main": "./out/extension",
+  "contributes": {
+    "commands": [
+      {
+        "command": "extension.environment-injector.injectVar",
+        "title": "Inject environment variable"
+      },
+      {
+        "command": "extension.environment-injector.getCurrentEnv",
+        "title": "Get your current environment"
+      },
+      {
+        "command": "extension.environment-injector.sourceEnvFile",
+        "title": "Source env file"
+      },
+      {
+        "command": "extension.environment-injector.readEnvFile",
+        "title": "Read env file"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "yarn run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/node": "^12.12.31",
+    "@types/vscode": "^1.29.0",
+    "vscode-test": "^1.3.0",
+    "tslint": "^6.1.0",
+    "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "dotenv": "^6.2.0"
+  }
 }
