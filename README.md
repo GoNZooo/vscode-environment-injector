@@ -16,6 +16,17 @@ Choose an env variable and a value for it; it'll be set in your environment.
 
 Input a path to a `.env` file, all of it will be read into your environment.
 
+Choosing source environment file in the command palette will inject the variables
+in that file into your current environment.
+
+The file should be formatted as follows:
+
+```
+VARIABLE1="some value for variable one here"
+OTHER_VARIABLE="42"
+...
+```
+
 ### Get current environment
 
 Get your current environment in an info box to inspect it. Copy the text from the
@@ -34,3 +45,7 @@ Upgraded some dev deps; `tslint`/`eslint` had some security issues.
 ### 0.0.3
 
 I somehow broke everything. Now runs fine again.
+
+### 0.0.4
+
+Updated that the injection of environment files to use a proper file dialog.

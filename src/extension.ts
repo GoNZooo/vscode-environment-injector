@@ -1,8 +1,7 @@
-"use strict";
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from "vscode";
-import { set, readEnvFile, getCurrentEnv } from "./env";
+import { set, readEnvironmentFile, getCurrentEnvironment } from "./env";
 
 export function activate(context: vscode.ExtensionContext) {
   // The command has been defined in the package.json file
@@ -25,43 +24,45 @@ export function activate(context: vscode.ExtensionContext) {
     }
   );
 
-  let readEnvFileCommand = vscode.commands.registerCommand(
+  let readEnvironmentFileCommand = vscode.commands.registerCommand(
     "extension.environment-injector.readEnvFile",
     async () => {
-      const envFile = await vscode.window.showInputBox({
-        prompt: "Env file",
-        ignoreFocusOut: true,
+      const environmentFiles = await vscode.window.showOpenDialog({
+        filters: { "Environment files": ["env"] },
+        openLabel: "Inject",
+        defaultUri: vscode.Uri.parse("."),
       });
-      if (envFile) {
-        readEnvFile(envFile);
+      if (environmentFiles !== undefined) {
+        environmentFiles.forEach((file) => readEnvironmentFile(file.fsPath));
       }
     }
   );
 
-  let sourceEnvFileCommand = vscode.commands.registerCommand(
+  let sourceEnvironmentFileCommand = vscode.commands.registerCommand(
     "extension.environment-injector.sourceEnvFile",
     async () => {
-      const envFile = await vscode.window.showInputBox({
-        prompt: "Env file",
-        ignoreFocusOut: true,
+      const environmentFiles = await vscode.window.showOpenDialog({
+        filters: { "Environment files": ["env"] },
+        openLabel: "Inject",
+        defaultUri: vscode.Uri.parse("."),
       });
-      if (envFile) {
-        readEnvFile(envFile);
+      if (environmentFiles !== undefined) {
+        environmentFiles.forEach((file) => readEnvironmentFile(file.fsPath));
       }
     }
   );
 
-  let getCurrentEnvCommand = vscode.commands.registerCommand(
+  let getCurrentEnvironmentCommand = vscode.commands.registerCommand(
     "extension.environment-injector.getCurrentEnv",
     async () => {
-      vscode.window.showInformationMessage(JSON.stringify(getCurrentEnv(), null, 2));
+      vscode.window.showInformationMessage(JSON.stringify(getCurrentEnvironment(), null, 2));
     }
   );
 
   context.subscriptions.push(injectCommand);
-  context.subscriptions.push(readEnvFileCommand);
-  context.subscriptions.push(sourceEnvFileCommand);
-  context.subscriptions.push(getCurrentEnvCommand);
+  context.subscriptions.push(readEnvironmentFileCommand);
+  context.subscriptions.push(sourceEnvironmentFileCommand);
+  context.subscriptions.push(getCurrentEnvironmentCommand);
 }
 
 // this method is called when your extension is deactivated
