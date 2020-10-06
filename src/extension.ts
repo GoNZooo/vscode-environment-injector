@@ -27,11 +27,14 @@ export function activate(context: vscode.ExtensionContext) {
   let readEnvironmentFileCommand = vscode.commands.registerCommand(
     "extension.environment-injector.readEnvFile",
     async () => {
+      const workspacePath = getWorkspacePath(vscode.workspace.workspaceFolders);
+
       const environmentFiles = await vscode.window.showOpenDialog({
         filters: { "Environment files": ["env"] },
         openLabel: "Inject",
-        defaultUri: vscode.Uri.parse("."),
+        defaultUri: workspacePath,
       });
+
       if (environmentFiles !== undefined) {
         environmentFiles.forEach((file) => readEnvironmentFile(file.fsPath));
       }
@@ -41,11 +44,14 @@ export function activate(context: vscode.ExtensionContext) {
   let sourceEnvironmentFileCommand = vscode.commands.registerCommand(
     "extension.environment-injector.sourceEnvFile",
     async () => {
+      const workspacePath = getWorkspacePath(vscode.workspace.workspaceFolders);
+
       const environmentFiles = await vscode.window.showOpenDialog({
         filters: { "Environment files": ["env"] },
         openLabel: "Inject",
-        defaultUri: vscode.Uri.parse("."),
+        defaultUri: workspacePath,
       });
+
       if (environmentFiles !== undefined) {
         environmentFiles.forEach((file) => readEnvironmentFile(file.fsPath));
       }
@@ -67,3 +73,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 // this method is called when your extension is deactivated
 export function deactivate() {}
+
+const getWorkspacePath = (folders: readonly vscode.WorkspaceFolder[] | undefined): vscode.Uri => {
+  return folders !== undefined ? folders[0].uri : vscode.Uri.file(".");
+};
