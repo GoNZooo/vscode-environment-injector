@@ -1,7 +1,7 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from "vscode";
-import { set, readEnvironmentFile, getCurrentEnvironment } from "./env";
+import { set, readEnvironmentFile, getCurrentEnvironment } from "./environment";
 
 export function activate(context: vscode.ExtensionContext) {
   // The command has been defined in the package.json file
