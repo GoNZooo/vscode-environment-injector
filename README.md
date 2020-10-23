@@ -42,26 +42,3 @@ WSL & `bash`*
 
 Get your current environment in an info box to inspect it. Copy the text from the
 notification and paste it somewhere to see a non-truncated version.
-
-## Release Notes
-
-### 0.0.1
-
-First release, experimental.
-
-### 0.0.2
-
-Upgraded some dev deps; `tslint`/`eslint` had some security issues.
-
-### 0.0.3
-
-I somehow broke everything. Now runs fine again.
-
-### 0.0.4
-
-Updated that the injection of environment files to use a proper file dialog.
-
-### 0.0.7
-
-Removed `dotenv` as dependency and made environment file parsing more robust,
-allowing for badly formatted files with optional leading export statements.
