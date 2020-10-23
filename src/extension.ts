@@ -21,7 +21,7 @@ export function activate(context: vscode.ExtensionContext) {
       if (variable && value) {
         set(variable, value);
       }
-    }
+    },
   );
 
   let readEnvironmentFileCommand = vscode.commands.registerCommand(
@@ -38,7 +38,7 @@ export function activate(context: vscode.ExtensionContext) {
       if (environmentFiles !== undefined) {
         environmentFiles.forEach((file) => readEnvironmentFile(file.fsPath));
       }
-    }
+    },
   );
 
   let sourceEnvironmentFileCommand = vscode.commands.registerCommand(
@@ -55,14 +55,14 @@ export function activate(context: vscode.ExtensionContext) {
       if (environmentFiles !== undefined) {
         environmentFiles.forEach((file) => readEnvironmentFile(file.fsPath));
       }
-    }
+    },
   );
 
   let getCurrentEnvironmentCommand = vscode.commands.registerCommand(
     "extension.environment-injector.getCurrentEnv",
     async () => {
       vscode.window.showInformationMessage(JSON.stringify(getCurrentEnvironment(), null, 2));
-    }
+    },
   );
 
   context.subscriptions.push(injectCommand);
