@@ -1,7 +1,7 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from "vscode";
-import {set, readEnvironmentFile, getCurrentEnvironment} from "./environment";
+import { set, readEnvironmentFile, getCurrentEnvironment } from "./environment";
 
 const outputConsole = vscode.window.createOutputChannel("Environment Injector");
 
