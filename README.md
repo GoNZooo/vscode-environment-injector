@@ -38,6 +38,11 @@ injected. Note that I haven't been able to get powershell to pick up sourced env
 variables at all, though this may be a matter of configuration. I've used it with
 WSL & `bash`*
 
+### Output your current environment in the 'Output' panel
+
+Output your current environment to the output panel to inspect it. The panel will
+should automatically open.
+
 ### Get current environment
 
 Get your current environment in an info box to inspect it. Copy the text from the
