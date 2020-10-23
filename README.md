@@ -27,6 +27,14 @@ OTHER_VARIABLE="42"
 ...
 ```
 
+Since version 0.0.7 it can also optionally have leading "export" or whitespace
+
+```
+ VARIABLE1="some value for variable one here"
+   export OTHER_VARIABLE="42"
+...
+```
+
 *Note: Applications/Terminals opened before sourcing a file will not be affected. Be
 sure to open applications/terminals after if you want it to get the sourced values
 injected.*
