@@ -3,9 +3,6 @@
 Extension for injecting single environment variables into your session and
 sourcing/reading `.env` files into it.
 
-*Note: This is mostly an experiment to see how env variables interact with the
-different processes in Electron/VS Code.*
-
 ## Features
 
 ### Inject env variable
@@ -37,7 +34,9 @@ Since version 0.0.7 it can also optionally have leading "export" or whitespace
 
 *Note: Applications/Terminals opened before sourcing a file will not be affected. Be
 sure to open applications/terminals after if you want it to get the sourced values
-injected.*
+injected. Note that I haven't been able to get powershell to pick up sourced environment
+variables at all, though this may be a matter of configuration. I've used it with
+WSL & `bash`*
 
 ### Get current environment
 
