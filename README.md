@@ -61,3 +61,8 @@ I somehow broke everything. Now runs fine again.
 ### 0.0.4
 
 Updated that the injection of environment files to use a proper file dialog.
+
+### 0.0.7
+
+Removed `dotenv` as dependency and made environment file parsing more robust,
+allowing for badly formatted files with optional leading export statements.
