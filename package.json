@@ -18,17 +18,23 @@
         "onCommand:extension.environment-injector.injectVar",
         "onCommand:extension.environment-injector.readEnvFile",
         "onCommand:extension.environment-injector.sourceEnvFile",
-        "onCommand:extension.environment-injector.getCurrentEnv"
+        "onCommand:extension.environment-injector.getCurrentEnv",
+        "onCommand:extension.environment-injector.outputCurrentEnv"
     ],
     "main": "./out/extension",
     "contributes": {
-        "commands": [{
+        "commands": [
+            {
                 "command": "extension.environment-injector.injectVar",
                 "title": "Inject environment variable"
             },
             {
                 "command": "extension.environment-injector.getCurrentEnv",
                 "title": "Get your current environment"
+            },
+            {
+                "command": "extension.environment-injector.outputCurrentEnv",
+                "title": "Output your current environment in the 'Output' panel"
             },
             {
                 "command": "extension.environment-injector.sourceEnvFile",
