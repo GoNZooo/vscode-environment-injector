@@ -1,8 +1,24 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from "vscode";
-import { set, readEnvironmentFile, getCurrentEnvironment } from "./environment";
+import {set, readEnvironmentFile, getCurrentEnvironment} from "./environment";
 
+const outputConsole = vscode.window.createOutputChannel("Environment Injector");
+
+const logResults = (message: string) => {
+  outputConsole.appendLine("");
+
+  const parsedMessage = JSON.parse(message);
+  for (const name in parsedMessage) {
+    if (parsedMessage.hasOwnProperty(name)) {
+      outputConsole.appendLine(`${name}=${parsedMessage[name]}`);
+    }
+  }
+
+  outputConsole.show(true);
+};
+
+// noinspection JSUnusedGlobalSymbols
 export function activate(context: vscode.ExtensionContext) {
   // The command has been defined in the package.json file
   // Now provide the implementation of the command with  registerCommand
@@ -58,6 +74,13 @@ export function activate(context: vscode.ExtensionContext) {
     },
   );
 
+  let outputCurrentEnvironmentCommand = vscode.commands.registerCommand(
+    "extension.environment-injector.outputCurrentEnv",
+    async () => {
+      logResults(JSON.stringify(getCurrentEnvironment(), null, 2));
+    },
+  );
+
   let getCurrentEnvironmentCommand = vscode.commands.registerCommand(
     "extension.environment-injector.getCurrentEnv",
     async () => {
@@ -69,9 +92,11 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(readEnvironmentFileCommand);
   context.subscriptions.push(sourceEnvironmentFileCommand);
   context.subscriptions.push(getCurrentEnvironmentCommand);
+  context.subscriptions.push(outputCurrentEnvironmentCommand);
 }
 
 // this method is called when your extension is deactivated
+// noinspection JSUnusedGlobalSymbols
 export function deactivate() {}
 
 const getWorkspacePath = (folders: readonly vscode.WorkspaceFolder[] | undefined): vscode.Uri => {
