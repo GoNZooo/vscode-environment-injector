@@ -10,7 +10,7 @@ different processes in Electron/VS Code.*
 
 ### Inject env variable
 
-Choose an env variable and a value for it; it'll be set in your environment.
+Choose an environment variable, and a value for it; it'll be set in your environment.
 
 ### Source an env file
 
@@ -26,6 +26,10 @@ VARIABLE1="some value for variable one here"
 OTHER_VARIABLE="42"
 ...
 ```
+
+*Note: Applications/Terminals opened before sourcing a file will not be affected. Be
+sure to open applications/terminals after if you want it to get the sourced values
+injected.*
 
 ### Get current environment
 
