@@ -30,7 +30,7 @@ export const parseEnvironmentFile = (path: string): EnvironmentPair[] => {
 
 const parseBuffer = (buffer: Buffer): EnvironmentPair[] => {
   const string = buffer.toString();
-  const lineEndings = string.includes("\r\n") ? "\r\n" : "\n";
+  const lineEndings = getLineEnding(string);
 
   return string
     .split(lineEndings)
@@ -49,4 +49,10 @@ const parseBuffer = (buffer: Buffer): EnvironmentPair[] => {
 
       return { key, value };
     });
+};
+
+type LineEnding = "\r\n" | "\n";
+
+export const getLineEnding = (contents: string): LineEnding => {
+  return contents.includes("\r\n") ? "\r\n" : "\n";
 };
