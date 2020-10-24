@@ -23,7 +23,7 @@ export function activate(context: vscode.ExtensionContext) {
   // The command has been defined in the package.json file
   // Now provide the implementation of the command with  registerCommand
   // The commandId parameter must match the command field in package.json
-  let injectCommand = vscode.commands.registerCommand(
+  const injectCommand = vscode.commands.registerCommand(
     "extension.environment-injector.injectVar",
     async () => {
       const variable = await vscode.window.showInputBox({
@@ -40,7 +40,7 @@ export function activate(context: vscode.ExtensionContext) {
     },
   );
 
-  let readEnvironmentFileCommand = vscode.commands.registerCommand(
+  const readEnvironmentFileCommand = vscode.commands.registerCommand(
     "extension.environment-injector.readEnvFile",
     async () => {
       const workspacePath = getWorkspacePath(vscode.workspace.workspaceFolders);
@@ -57,31 +57,42 @@ export function activate(context: vscode.ExtensionContext) {
     },
   );
 
-  let sourceEnvironmentFileCommand = vscode.commands.registerCommand(
+  const sourceEnvironmentFileCommand = vscode.commands.registerCommand(
     "extension.environment-injector.sourceEnvFile",
-    async () => {
-      const workspacePath = getWorkspacePath(vscode.workspace.workspaceFolders);
+    async (uriFromContextMenu: vscode.Uri | undefined) => {
+      const sourceUri = (uri: vscode.Uri) => {
+        outputConsole.appendLine(`Sourcing: ${uri.fsPath}`);
+        readEnvironmentFile(uri.fsPath);
+      };
 
-      const environmentFiles = await vscode.window.showOpenDialog({
-        filters: { "Environment files": ["env"] },
-        openLabel: "Inject",
-        defaultUri: workspacePath,
-      });
+      if (uriFromContextMenu !== undefined) {
+        sourceUri(uriFromContextMenu);
+      } else {
+        const workspacePath = getWorkspacePath(vscode.workspace.workspaceFolders);
 
-      if (environmentFiles !== undefined) {
-        environmentFiles.forEach((file) => readEnvironmentFile(file.fsPath));
+        const environmentFiles = await vscode.window.showOpenDialog({
+          filters: { "Environment files": ["env"] },
+          openLabel: "Inject",
+          defaultUri: workspacePath,
+        });
+
+        if (environmentFiles !== undefined) {
+          environmentFiles.forEach((file) => {
+            sourceUri(file);
+          });
+        }
       }
     },
   );
 
-  let outputCurrentEnvironmentCommand = vscode.commands.registerCommand(
+  const outputCurrentEnvironmentCommand = vscode.commands.registerCommand(
     "extension.environment-injector.outputCurrentEnv",
     async () => {
       logResults(JSON.stringify(getCurrentEnvironment(), null, 2));
     },
   );
 
-  let getCurrentEnvironmentCommand = vscode.commands.registerCommand(
+  const getCurrentEnvironmentCommand = vscode.commands.registerCommand(
     "extension.environment-injector.getCurrentEnv",
     async () => {
       vscode.window.showInformationMessage(JSON.stringify(getCurrentEnvironment(), null, 2));

@@ -5,16 +5,15 @@ sourcing/reading `.env` files into it.
 
 ## Features
 
-### Inject env variable
+### Inject environment variable
 
 Choose an environment variable, and a value for it; it'll be set in your environment.
 
-### Source an env file
+### Source an environment file (Command Palette / File Tree Context Menu)
 
-Input a path to a `.env` file, all of it will be read into your environment.
-
-Choosing source environment file in the command palette will inject the variables
-in that file into your current environment.
+Input a path to a `.env` file (or access it by right-clicking a file in your
+file tree and choosing "Source environment file"), all of it will be read into
+your environment.
 
 The file should be formatted as follows:
 
@@ -24,7 +23,9 @@ OTHER_VARIABLE="42"
 ...
 ```
 
-Since version 0.0.7 it can also optionally have leading "export" or whitespace
+It can also optionally have leading "export" or whitespace and generally be
+badly formatted, though with the exception of leading `export` I don't see why
+you would have more exotic formatting of an `.env` file.
 
 ```
  VARIABLE1="some value for variable one here"
