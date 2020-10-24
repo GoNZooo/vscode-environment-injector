@@ -25,3 +25,8 @@ allowing for badly formatted files with optional leading export statements.
 
 - Added "Output current environment to panel" command. Thanks to
 [Jebtrix](https://github.com/Jebtrix) for suggesting it and making the pull request.
+
+## [0.1.0]
+
+- Added ability to source environment file from file tree context menu on `.env`
+  files.

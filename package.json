@@ -8,7 +8,7 @@
     "type": "git",
     "url": "https://github.com/GoNZooo/vscode-environment-injector"
   },
-  "version": "0.0.10",
+  "version": "0.1.0",
   "engines": {
     "vscode": "^1.43.0"
   },
@@ -16,6 +16,7 @@
     "Other"
   ],
   "activationEvents": [
+    "workspaceContains:**/*.env",
     "onCommand:extension.environment-injector.injectVar",
     "onCommand:extension.environment-injector.readEnvFile",
     "onCommand:extension.environment-injector.sourceEnvFile",
@@ -45,7 +46,16 @@
         "command": "extension.environment-injector.readEnvFile",
         "title": "Read environment file"
       }
-    ]
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "when": "resourceExtname == .env",
+          "command": "extension.environment-injector.sourceEnvFile",
+          "group": "z_commands"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "yarn run compile",
