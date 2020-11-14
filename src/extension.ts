@@ -18,30 +18,54 @@ const logResults = (message: string) => {
   outputConsole.show(true);
 };
 
+enum CommandName {
+  injectVariable = "extension.environment-injector.injectVariable",
+  replaceVariable = "extension.environment-injector.replaceVariable",
+  readEnvironment = "extension.environment-injector.readEnvironmentFile",
+  sourceEnvironmentFile = "extension.environment-injector.sourceEnvironmentFile",
+  outputCurrentEnvironment = "extension.environment-injector.outputCurrentEnvironment",
+  getCurrentEnvironment = "extension.environment-injector.getCurrentEnvironment",
+}
+
 // noinspection JSUnusedGlobalSymbols
 export function activate(context: vscode.ExtensionContext) {
   // The command has been defined in the package.json file
   // Now provide the implementation of the command with  registerCommand
   // The commandId parameter must match the command field in package.json
-  const injectCommand = vscode.commands.registerCommand(
-    "extension.environment-injector.injectVar",
+  const injectCommand = vscode.commands.registerCommand(CommandName.injectVariable, async () => {
+    const variable = await vscode.window.showInputBox({
+      prompt: "Environment variable",
+      ignoreFocusOut: true,
+    });
+    const value = await vscode.window.showInputBox({
+      prompt: "Value",
+      ignoreFocusOut: true,
+    });
+    if (variable && value) {
+      set(variable, value);
+    }
+  });
+
+  const replaceVariableCommand = vscode.commands.registerCommand(
+    CommandName.replaceVariable,
     async () => {
-      const variable = await vscode.window.showInputBox({
-        prompt: "Environment variable",
+      const variables = Object.keys(process.env);
+      const variableToReplace: string | undefined = await vscode.window.showQuickPick(variables, {
+        placeHolder: "Variable to replace",
         ignoreFocusOut: true,
       });
-      const value = await vscode.window.showInputBox({
-        prompt: "Value",
+      const newValue: string | undefined = await vscode.window.showInputBox({
+        prompt: "New value",
         ignoreFocusOut: true,
       });
-      if (variable && value) {
-        set(variable, value);
+      if (variableToReplace !== undefined && newValue !== undefined) {
+        set(variableToReplace, newValue);
       }
     },
   );
 
   const readEnvironmentFileCommand = vscode.commands.registerCommand(
-    "extension.environment-injector.readEnvFile",
+    CommandName.readEnvironment,
     async () => {
       const workspacePath = getWorkspacePath(vscode.workspace.workspaceFolders);
 
@@ -58,7 +82,7 @@ export function activate(context: vscode.ExtensionContext) {
   );
 
   const sourceEnvironmentFileCommand = vscode.commands.registerCommand(
-    "extension.environment-injector.sourceEnvFile",
+    CommandName.sourceEnvironmentFile,
     async (uriFromContextMenu: vscode.Uri | undefined) => {
       const sourceUri = (uri: vscode.Uri) => {
         outputConsole.appendLine(`Sourcing: ${uri.fsPath}`);
@@ -86,14 +110,14 @@ export function activate(context: vscode.ExtensionContext) {
   );
 
   const outputCurrentEnvironmentCommand = vscode.commands.registerCommand(
-    "extension.environment-injector.outputCurrentEnv",
+    CommandName.outputCurrentEnvironment,
     async () => {
       logResults(JSON.stringify(getCurrentEnvironment(), null, 2));
     },
   );
 
   const getCurrentEnvironmentCommand = vscode.commands.registerCommand(
-    "extension.environment-injector.getCurrentEnv",
+    CommandName.getCurrentEnvironment,
     async () => {
       vscode.window.showInformationMessage(JSON.stringify(getCurrentEnvironment(), null, 2));
     },
@@ -104,6 +128,7 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(sourceEnvironmentFileCommand);
   context.subscriptions.push(getCurrentEnvironmentCommand);
   context.subscriptions.push(outputCurrentEnvironmentCommand);
+  context.subscriptions.push(replaceVariableCommand);
 }
 
 // this method is called when your extension is deactivated

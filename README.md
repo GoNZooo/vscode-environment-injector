@@ -9,6 +9,10 @@ sourcing/reading `.env` files into it.
 
 Choose an environment variable, and a value for it; it'll be set in your environment.
 
+### Replace environment variable
+
+Pick from a quicklist of currently defined environment variable, type in a replacement value.
+
 ### Source an environment file (Command Palette / File Tree Context Menu)
 
 Input a path to a `.env` file (or access it by right-clicking a file in your
