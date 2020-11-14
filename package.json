@@ -8,7 +8,7 @@
     "type": "git",
     "url": "https://github.com/GoNZooo/vscode-environment-injector"
   },
-  "version": "0.1.0",
+  "version": "0.2.0",
   "engines": {
     "vscode": "^1.43.0"
   },
@@ -17,41 +17,46 @@
   ],
   "activationEvents": [
     "workspaceContains:**/*.env",
-    "onCommand:extension.environment-injector.injectVar",
-    "onCommand:extension.environment-injector.readEnvFile",
-    "onCommand:extension.environment-injector.sourceEnvFile",
-    "onCommand:extension.environment-injector.getCurrentEnv",
-    "onCommand:extension.environment-injector.outputCurrentEnv"
+    "onCommand:extension.environment-injector.injectVariable",
+    "onCommand:extension.environment-injector.readEnvironmentFile",
+    "onCommand:extension.environment-injector.sourceEnvironmentFile",
+    "onCommand:extension.environment-injector.getCurrentEnvironment",
+    "onCommand:extension.environment-injector.outputCurrentEnvironment",
+    "onCommand:extension.environment-injector.replaceVariable"
   ],
   "main": "./out/extension",
   "contributes": {
     "commands": [
       {
-        "command": "extension.environment-injector.injectVar",
+        "command": "extension.environment-injector.injectVariable",
         "title": "Inject environment variable"
       },
       {
-        "command": "extension.environment-injector.getCurrentEnv",
+        "command": "extension.environment-injector.getCurrentEnvironment",
         "title": "Get your current environment"
       },
       {
-        "command": "extension.environment-injector.outputCurrentEnv",
+        "command": "extension.environment-injector.outputCurrentEnvironment",
         "title": "Output your current environment in the 'Output' panel"
       },
       {
-        "command": "extension.environment-injector.sourceEnvFile",
+        "command": "extension.environment-injector.sourceEnvironmentFile",
         "title": "Source environment file"
       },
       {
-        "command": "extension.environment-injector.readEnvFile",
+        "command": "extension.environment-injector.readEnvironmentFile",
         "title": "Read environment file"
+      },
+      {
+        "command": "extension.environment-injector.replaceVariable",
+        "title": "Replace a current environment variable"
       }
     ],
     "menus": {
       "explorer/context": [
         {
           "when": "resourceExtname == .env",
-          "command": "extension.environment-injector.sourceEnvFile",
+          "command": "extension.environment-injector.sourceEnvironmentFile",
           "group": "z_commands"
         }
       ]

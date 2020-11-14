@@ -30,3 +30,9 @@ allowing for badly formatted files with optional leading export statements.
 
 - Added ability to source environment file from file tree context menu on `.env`
   files.
+  
+## [0.2.0]
+
+- Added ability to replace any currently defined variable using a quicklist, via the
+  "Replace" command.
+- Changed internal names of commands to be not as needlessly short.
